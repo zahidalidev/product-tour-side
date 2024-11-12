@@ -5,23 +5,28 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 import { useTourStore } from "@/stores/tour-store"
+import { Button } from "./ui/button"
+
+import CodyLogo from '@/assets/icons/codyIconWithText.svg'
+import Image from "next/image"
 
 export function ProductTourSidebar() {
   const { items, activeItem, completedItems, handleItemSelect } = useTourStore()
 
   return (
-    <Sidebar>
+    <Sidebar className="bg-black border-r border-border w-[340px]">
+      <div className="flex pt-6 p-2 pl-4 items-start justify-start">
+        <Image width={170} height={170} alt="cody" src={CodyLogo} />
+      </div>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Features</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="px-4">
               {items.map((item) => {
                 const isCompleted = completedItems.includes(item.id)
                 const isActive = activeItem.id === item.id
@@ -31,15 +36,22 @@ export function ProductTourSidebar() {
                     <SidebarMenuButton
                       asChild
                       onClick={() => handleItemSelect(item)}
+                      className="hover:bg-[#6112a305]"
                     >
                       <button
                         className={`
-                          ${isCompleted ? 'text-green-500' : ''}
-                          ${isActive ? 'bg-blue-100' : ''}
+                          w-full rounded-lg px-4 py-3 transition-all duration-200
+                          ${isCompleted ? 'text-accent' : ''}
+                          ${isActive
+                            ? 'text-foreground shadow-lg'
+                            : 'text-muted-foreground hover:text-foreground'
+                          }
                         `}
                       >
-                        <item.icon />
-                        <span>{item.title}</span>
+                        <div className="flex items-center gap-3">
+                          <Image alt="cody" src={item.icon} />
+                          <span className="font-light text-[20px]">{item.title}</span>
+                        </div>
                       </button>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -49,6 +61,14 @@ export function ProductTourSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <div className="w-full mt-auto p-8 flex justify-center">
+        <Button
+          className="w-[180px] bg-gradient-to-r from-primary to-secondary text-white hover:opacity-90 transition-opacity
+          py-6 rounded-lg font-normal shadow-lg"
+        >
+          Contact Sales
+        </Button>
+      </div>
     </Sidebar>
   )
 }

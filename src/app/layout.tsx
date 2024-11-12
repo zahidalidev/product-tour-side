@@ -1,25 +1,20 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import { SidebarProvider } from "@/components/ui/sidebar"; 
-import { ProductTourSidebar } from "@/components/sidebar";
-;
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { ProductTourSidebar } from "@/components/sidebar";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Product Tour",
   description: "Interactive product tour",
 };
+
+const lexend = localFont({
+  src: "../assets/fonts/lexend.woff2",
+  variable: "--font-lexend",
+  weight: "100 900",
+});
 
 export default function RootLayout({
   children,
@@ -28,9 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${lexend.variable} font-lexend antialiased bg-background`}>
         <SidebarProvider defaultOpen>
-          <div className="flex min-h-screen">
+          <div className="flex min-h-screen w-full">
             <ProductTourSidebar />
             {children}
           </div>

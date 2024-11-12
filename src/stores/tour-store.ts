@@ -1,32 +1,35 @@
 import { create } from 'zustand'
-import { MessageSquare, Wand2, Box, MessageSquareDashed } from 'lucide-react'
+import ChatIcon from '@/assets/icons/chat.svg'
+import AutocompleteIcon from '@/assets/icons/autocomplete.svg'
+import ContextIcon from '@/assets/icons/context.svg'
+import PromptsIcon from '@/assets/icons/prompts.svg'
 
 export const sidebarItems = [
   {
     id: 1,
     title: 'Chat',
-    icon: MessageSquare,
+    icon: ChatIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: true,
   },
   {
     id: 2,
     title: 'Autocomplete',
-    icon: Wand2,
+    icon: AutocompleteIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: false,
   },
   {
     id: 3,
     title: 'Context',
-    icon: Box,
+    icon: ContextIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: false,
   },
   {
     id: 4,
     title: 'Prompts',
-    icon: MessageSquareDashed,
+    icon: PromptsIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: false,
   },
