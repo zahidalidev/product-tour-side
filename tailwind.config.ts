@@ -9,8 +9,33 @@ const config: Config = {
   ],
   theme: {
     fontFamily: {
-      sans: ['var(--font-lexend)'],
-      lexend: ['var(--font-lexend)'],
+      sans: [
+        'InterVariable',
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        '"Noto Sans"',
+        'sans-serif',
+      ],
+      mono: [
+        'Roboto mono',
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        '"Noto Sans"',
+        'sans-serif',
+      ],
+      display: ['Space Grotesk'],
     },
     extend: {
       animation: {
@@ -54,11 +79,13 @@ const config: Config = {
         'border-line-rotate': {
           '0%, 50%': { 
             width: '120px',
-            height: '1px'
+            height: '2px',
+            '--gradient-angle': '90deg'
           },
           '25%, 75%': { 
-            width: '1px',
-            height: '120px'
+            width: '2px',
+            height: '120px',
+            '--gradient-angle': '0deg'
           }
         },
         'gradient-shift': {

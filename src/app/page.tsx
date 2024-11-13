@@ -44,7 +44,11 @@ const BorderLine = () => {
     <div
       className="absolute animate-border-line"
       style={{
-        backgroundColor: currentColor,
+        background: `linear-gradient(var(--gradient-angle, 90deg), 
+          transparent 0%, 
+          ${currentColor} 30%, 
+          ${currentColor} 70%, 
+          transparent 100%)`,
         boxShadow: `
           0 0 8px rgba(255,255,255,1),
           0 0 16px rgba(255,255,255,0.9),
@@ -58,6 +62,7 @@ const BorderLine = () => {
     />
   )
 }
+
 
 export default function Home() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -120,7 +125,7 @@ export default function Home() {
         <StarParticle key={i} style={star.style} />
       ))}
       <div className="sl-embed rounded-lg border border-border relative z-10 overflow-hidden" style={{
-        position: 'relative', width: '68.5rem', height: '45rem',
+        position: 'relative', width: '68.5rem', height: '43rem',
         transformOrigin: 'bottom center',
         transition: 'all 2s ease-in-out',
         boxShadow: '0 0 7vw -4vw #a112ff'
@@ -147,7 +152,7 @@ export default function Home() {
         />
       </div>
       <div className="overflow-hidden rounded-lg border" style={{
-        position: 'absolute', width: '68.5rem', height: '45rem',  borderRadius: '10px',
+        position: 'absolute', width: '68.5rem', height: '43rem',  borderRadius: '10px',
       }}>
         <BorderLine />
       </div>
