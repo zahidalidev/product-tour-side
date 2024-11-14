@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased bg-background`}>
         <SidebarProvider defaultOpen>
           <div className="flex min-h-screen w-full">
-            <ProductTourSidebar />
+            {/* <ProductTourSidebar /> */}
             {children}
           </div>
         </SidebarProvider>

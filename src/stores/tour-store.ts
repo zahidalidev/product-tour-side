@@ -6,8 +6,18 @@ import PromptsIcon from '@/assets/icons/prompts.svg'
 
 export const sidebarItems = [
   {
+    id: 0,
+    title: 'Start Product Tour',
+    description: 'Start your journey with Cody and discover all its powerful features.',
+    icon: ChatIcon,
+    demoId: '6ly0v9tfnmsr',
+    isActive: true,
+    isStartButton: true
+  },
+  {
     id: 1,
     title: 'Chat',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     icon: ChatIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: true,
@@ -15,6 +25,7 @@ export const sidebarItems = [
   {
     id: 2,
     title: 'Autocomplete',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     icon: AutocompleteIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: false,
@@ -22,6 +33,7 @@ export const sidebarItems = [
   {
     id: 3,
     title: 'Context',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     icon: ContextIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: false,
@@ -29,6 +41,7 @@ export const sidebarItems = [
   {
     id: 4,
     title: 'Prompts',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     icon: PromptsIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: false,

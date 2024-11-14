@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTourStore } from '@/stores/tour-store'
 import backgroundImage from '@/assets/images/lite-metallic.png'
+import { TourSlider } from '@/components/tour-slider'
+import { Button } from '@/components/ui/button'
 
 const StarParticle = ({ style }: { style: React.CSSProperties }) => {
   const colors = [
@@ -58,15 +60,15 @@ const BorderLine = () => {
         filter: 'brightness(1.5) blur(0.5px)',
         transform: 'translate(-50%, -50%)',
         position: 'absolute',
+        // zIndex: 1000,
       }}
     />
   )
 }
 
-
 export default function Home() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const { activeItem, items, completedItems, setCompletedItems, setItems, setActiveItem } = useTourStore();
+  const { activeItem, items, completedItems, setCompletedItems, setItems, setActiveItem, handleItemSelect } = useTourStore();
 
   const stars = Array.from({ length: 700 }).map((_, i) => ({
     style: {
@@ -120,16 +122,33 @@ export default function Home() {
   }, [iframeRef.current, activeItem.id, items, completedItems, setCompletedItems, setItems, setActiveItem]);
 
   return (
-    <main style={{ backgroundColor: 'black' }} className="flex-1 flex items-center justify-center text-foreground relative overflow-hidden">
+    <main style={{ backgroundColor: 'black' }} className="flex-1 flex items-center justify-center gap-8 text-foreground relative overflow-hidden px-12">
       {stars.map((star, i) => (
         <StarParticle key={i} style={star.style} />
       ))}
+      <TourSlider />
       <div className="sl-embed rounded-lg border border-border relative z-10 overflow-hidden" style={{
-        position: 'relative', width: '68.5rem', height: '43rem',
+        position: 'relative',
+        width: '60rem',
+        height: '38rem',
         transformOrigin: 'bottom center',
         transition: 'all 2s ease-in-out',
         boxShadow: '0 0 7vw -4vw #a112ff'
       }}>
+        {activeItem.isStartButton && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center z-50s">
+            <div className="bg-white rounded-lg p-8 max-w-lg w-full mx-4 flex flex-col items-center text-center">
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">Welcome to the Product Tour</h1>
+              <p className="text-gray-600 mb-8">Discover the powerful features and capabilities of our platform through this interactive guided tour. Learn how to make the most of our tools and streamline your workflow.</p>
+              <Button
+                onClick={() => handleItemSelect(items[1])}
+                className="bg-gradient-to-r from-primary to-secondary text-white text-xl px-8 py-6 mt-auto"
+              >
+                Start Tour
+              </Button>
+            </div>
+          </div>
+        )}
         <iframe
           key={activeItem.id}
           ref={iframeRef}
@@ -147,14 +166,20 @@ export default function Home() {
             border: '1px solid rgba(255, 255, 255, 0.1)',
             boxShadow: '0px 0px 18px rgba(0, 0, 0, 0.25)',
             borderRadius: '10px',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            filter: activeItem.isStartButton ? 'blur(1px)' : 'none',
+            zIndex: 10
+
           }}
         />
-      </div>
-      <div className="overflow-hidden rounded-lg border" style={{
-        position: 'absolute', width: '68.5rem', height: '43rem',  borderRadius: '10px',
-      }}>
-        <BorderLine />
+          <BorderLine />
+
+        {/* <div className="overflow-hidden rounded-lg border" style={{
+          position: 'absolute', width: '60rem',
+          height: '38rem', borderRadius: '10px',
+        }}>
+          <BorderLine />
+        </div> */}
       </div>
     </main>
   )
