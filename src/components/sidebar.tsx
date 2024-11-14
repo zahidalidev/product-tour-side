@@ -21,7 +21,7 @@ export function ProductTourSidebar() {
   return (
     <Sidebar className="bg-black border-r border-border w-[340px]">
       <div className="flex pt-6 p-2 pl-4 items-start justify-start">
-        <Image width={170} height={170} alt="cody" src={CodyLogo} />
+        <Image width={200} alt="cody" src={CodyLogo} />
       </div>
       <SidebarContent>
         <SidebarGroup>
@@ -50,7 +50,7 @@ export function ProductTourSidebar() {
                       >
                         <div className="flex items-center gap-3">
                           <Image alt="cody" src={item.icon} />
-                          <span className="font-light text-[20px]">{item.title}</span>
+                          <span className="text-balance mx-auto max-w-xl text-center text-sm sm:text-base md:text-xl lg:max-w-2xl">{item.title}</span>
                         </div>
                       </button>
                     </SidebarMenuButton>
