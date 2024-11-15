@@ -28,49 +28,51 @@ export function TourSlider() {
     return null
 
   return (
-    <div className="w-[400px] bg-black p-8 flex flex-col gap-3 mr-4">
+    <div className="w-[500px] bg-black p-8 flex flex-col gap-3 mr-4">
       <div className="flex items-center gap-3">
-        <Image className="w-6 h-6" alt={activeItem.title} src={activeItem.icon} />
-        <h2 className="text-left text-xl tracking-tight md:text-3xl md:leading-tight   text-white">{activeItem.title}</h2>
+        <Image className="w-10 h-10" alt={activeItem.title} src={activeItem.icon} />
+        <h1 className="text-center text-5xl lg:text-6xl font-medium">
+          {activeItem.title}
+        </h1>
       </div>
-
-      <p className="text-gray-400 text-left text-lg md:text-xl">
+      <p className="text-balance text-white mx-auto mt-5 max-w-xl text-left text-sm  sm:text-base md:text-xl lg:mt-2 lg:max-w-2xl">
         {activeItem.description}
       </p>
-
-      <div className="flex items-center justify-between mt-8  lg:mt-24">
+      <div className="flex items-center justify-between mt-8 lg:mt-10">
         <div className="flex gap-2">
-          {!activeItem.isStartButton && items.filter(item => !item.isStartButton).map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleItemSelect(item)}
-              className={`w-3 h-3 rounded-full transition-colors ${item.id === activeItem.id
-                ? 'bg-secondary'
-                : completedItems.includes(item.id)
-                  ? 'bg-gray-400'
-                  : 'bg-gray-600'
-                }`}
-            />
-          ))}
+          {items
+            .filter(item => !item.isStartButton)
+            .map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleItemSelect(item)}
+                className={`h-3 w-3 rounded-full transition-colors ${item.id === activeItem.id
+                  ? 'bg-secondary'
+                  : completedItems.includes(item.id)
+                    ? 'bg-gray-400'
+                    : 'bg-gray-600'
+                  }`}
+              />
+            ))}
         </div>
-
-        <div className={`flex ${activeItem.isStartButton ? 'w-full justify-start' : 'gap-2'}`}>
-          {!activeItem.isStartButton && (
+        <div className={`flex ${activeItem?.isStartButton ? 'w-full justify-center' : 'gap-2'}`}>
+          {!activeItem?.isStartButton && (
             <Button
               onClick={handleBack}
-              disabled={activeItem.id === items[1].id}
+              disabled={activeItem.id === items[0].id}
               variant="outline"
-              className="text-white hover:bg-primary text-md px-6 py-4"
+              className="btn btn-secondary-dark w-full max-w-[356px] px-5 sm:w-fit sm:px-6"
             >
               Back
             </Button>)}
-          <Button
+          <button
+            type="button"
+            className="btn btn-primary-dark w-full max-w-[356px] px-5 sm:w-fit sm:px-6 disabled:opacity-50"
             onClick={handleNext}
             disabled={activeItem.id === items[items.length - 1].id}
-            className={`bg-gradient-to-r from-primary to-secondary text-white ${activeItem.isStartButton ? 'text-lg px-8 py-6' : 'text-md px-6 py-4'}`}
           >
-            {activeItem.isStartButton ? 'Start Tour' : 'Next'}
-          </Button>
+            {activeItem?.isStartButton ? 'Start Tour' : 'Next'}
+          </button>
         </div>
       </div>
     </div>

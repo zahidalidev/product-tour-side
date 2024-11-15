@@ -5,15 +5,15 @@ import ContextIcon from '@/assets/icons/context.svg'
 import PromptsIcon from '@/assets/icons/prompts.svg'
 
 export const sidebarItems = [
-  {
-    id: 0,
-    title: 'Start Product Tour',
-    description: 'Start your journey with Cody and discover all its powerful features.',
-    icon: ChatIcon,
-    demoId: '6ly0v9tfnmsr',
-    isActive: true,
-    isStartButton: true
-  },
+  // {
+  //   id: 0,
+  //   title: 'Start Product Tour',
+  //   description: 'Start your journey with Cody and discover all its powerful features.',
+  //   icon: ChatIcon,
+  //   demoId: '6ly0v9tfnmsr',
+  //   isActive: true,
+  //   isStartButton: true
+  // },
   {
     id: 1,
     title: 'Chat',
@@ -21,6 +21,7 @@ export const sidebarItems = [
     icon: ChatIcon,
     demoId: '6ly0v9tfnmsr',
     isActive: true,
+    isStartButton: false
   },
   {
     id: 2,
