@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { ProductTourSidebar } from "@/components/sidebar";
 import "./globals.css";
 
 export const metadata: Metadata = {

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTourStore } from '@/stores/tour-store'
-import backgroundImage from '@/assets/images/lite-metallic.png'
 import { TourSlider } from '@/components/tour-slider'
 import { Button } from '@/components/ui/button'
 
@@ -70,7 +69,7 @@ export default function Home() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const { activeItem, items, completedItems, setCompletedItems, setItems, setActiveItem, handleItemSelect } = useTourStore();
 
-  const stars = Array.from({ length: 700 }).map((_, i) => ({
+  const stars = Array.from({ length: 700 }).map(() => ({
     style: {
       bottom: `${Math.random() * 200 - 50}%`,
       left: `${Math.random() * 200 - 50}%`,
@@ -80,7 +79,7 @@ export default function Home() {
   }));
 
   useEffect(() => {
-    let currentIframe = iframeRef.current;
+    const currentIframe = iframeRef.current;
     if (currentIframe) {
       const handleMessage = (event: MessageEvent) => {
         if (event.data.payload?.event === 'flow_end') {
