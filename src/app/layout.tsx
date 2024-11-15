@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import { SidebarProvider } from "@/components/ui/sidebar";
 import "./globals.css";
+import { ProductTourSidebar } from "@/components/sidebar";
 
 export const metadata: Metadata = {
   title: "Product Tour",
@@ -21,7 +22,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background">
         <SidebarProvider defaultOpen>
           <div className="flex min-h-screen w-full">
-            {/* <ProductTourSidebar /> */}
+            <ProductTourSidebar />
             {children}
           </div>
         </SidebarProvider>

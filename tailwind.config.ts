@@ -176,7 +176,7 @@ const config: Config = {
       animation: {
         'twinkle': 'twinkle 3s ease-in-out infinite',
         'diagonal-float': 'diagonal-float 120s linear infinite',
-        'border-line': 'border-line 20s linear infinite, border-line-rotate 20s step-end infinite, gradient-shift 5s linear infinite'
+        'border-line': 'border-line 30s linear infinite, border-line-rotate 30s step-end infinite, gradient-shift 5s linear infinite'
       },
       keyframes: {
         twinkle: {

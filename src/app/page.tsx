@@ -125,7 +125,8 @@ export default function Home() {
       {stars.map((star, i) => (
         <StarParticle key={i} style={star.style} />
       ))}
-      <TourSlider />
+      {/* <TourSlider /> */}
+      
       <div className="sl-embed rounded-lg border border-border relative z-10 overflow-hidden" style={{
         position: 'relative',
         width: '60rem',
