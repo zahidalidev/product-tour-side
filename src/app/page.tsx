@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useTourStore } from '@/stores/tour-store'
-// import { TourSlider } from '@/components/tour-slider'
+import { TourSlider } from '@/components/tour-slider'
 import { Button } from '@/components/ui/button'
 
 const StarParticle = ({ style }: { style: React.CSSProperties }) => {
@@ -125,7 +125,7 @@ export default function Home() {
       {stars.map((star, i) => (
         <StarParticle key={i} style={star.style} />
       ))}
-      {/* <TourSlider /> */}
+      <TourSlider />
       
       <div className="sl-embed rounded-lg border border-border relative z-10 overflow-hidden" style={{
         position: 'relative',
