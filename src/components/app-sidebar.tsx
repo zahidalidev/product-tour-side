@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Command, ChevronRight, ChevronsUpDown } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import { useTourStore } from "@/stores/tour-store"
 import {
   Sidebar,
@@ -21,32 +21,13 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+
 import CodyLogo from '@/assets/icons/codyIconWithText.svg'
 import Image from "next/image"
 import { Button } from "./ui/button"
 
-const userData = {
-  name: "shadcn",
-  email: "m@example.com",
-  avatar: "/avatars/shadcn.jpg",
-}
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { items, activeItem, activeSubItem, completedItems, handleItemSelect, currentStep } = useTourStore()
+  const { items, activeItem, activeSubItem, handleItemSelect, currentStep } = useTourStore()
 
   console.log('currentStep', currentStep)
   console.log('activeSubItem', activeSubItem)
@@ -91,7 +72,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.subItems.map((subItem, index) => (
+                        {item.subItems.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.id}>
                             <SidebarMenuSubButton
                               className={`
@@ -99,10 +80,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                   ? 'text-current hover:text-current'
                                   : 'text-gray-400 hover:text-gray-400'}
                                 `
-                                //   ${index < currentStep && activeItem.id === item.id
-                                //     ? 'text-accent'
-                                //     : ''}
-                                // `
                               }
                             >
                               <span>{subItem.title}</span>
@@ -129,35 +106,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               >
                 Contact Sales
               </Button>
-            </div>            {/* <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton size="lg">
-                  <Avatar className="h-8 w-8 rounded-lg">
-                    <AvatarImage src={userData.avatar} alt={userData.name} />
-                    <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                  </Avatar>
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate ">{userData.name}</span>
-                    <span className="truncate text-xs">{userData.email}</span>
-                  </div>
-                  <ChevronsUpDown className="ml-auto size-4" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                side="bottom"
-                align="end"
-                sideOffset={4}
-              >
-                <DropdownMenuLabel>Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuItem>Log out</DropdownMenuItem>
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu> */}
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
