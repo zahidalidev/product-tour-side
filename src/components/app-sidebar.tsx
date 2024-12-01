@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { ChevronRight } from "lucide-react"
 import { useTourStore } from "@/stores/tour-store"
 import {
   Sidebar,
@@ -14,36 +13,31 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
-  SidebarMenuAction,
 } from "@/components/ui/sidebar"
 import {
   Collapsible,
   CollapsibleContent,
-  CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import Image from "next/image"
 
 import CodyLogo from '@/assets/icons/codyIconWithText.svg'
-import Image from "next/image"
 import { Button } from "./ui/button"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { items, activeItem, activeSubItem, handleItemSelect, currentStep } = useTourStore()
+  const { items, activeItem, activeSubItem, handleItemSelect } = useTourStore()
 
-  console.log('currentStep', currentStep)
-  console.log('activeSubItem', activeSubItem)
 
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <div className="grid flex-1 text-sm leading-tight justify-center items-center">
-              <Image src={CodyLogo} alt="cody" width={150} />
+            <div className="grid flex-1 text-sm leading-tight justify-start items-center">
+              <Image src={CodyLogo} alt="cody" width={100} />
             </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-
       <SidebarContent>
         <SidebarMenu>
           {items.map((item) => (
@@ -64,21 +58,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenuButton>
                 {item.subItems?.length && (
                   <>
-                    <CollapsibleTrigger asChild>
+                    {/* <CollapsibleTrigger asChild>
                       <SidebarMenuAction className="data-[state=open]:rotate-90">
                         <ChevronRight />
                         <span className="sr-only">Toggle</span>
                       </SidebarMenuAction>
-                    </CollapsibleTrigger>
+                    </CollapsibleTrigger> */}
                     <CollapsibleContent>
                       <SidebarMenuSub>
                         {item.subItems.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.id}>
                             <SidebarMenuSubButton
                               className={`
-                                  hover:bg-transparent ${activeSubItem?.id === subItem.id && activeItem.id === item.id
+                                  hover:bg-transparent active:bg-transparent ${activeSubItem?.id === subItem.id && activeItem.id === item.id
                                   ? 'text-current hover:text-current'
-                                  : 'text-gray-400 hover:text-gray-400'}
+                                  : 'text-[#444444] hover:text-[#444444] active:text-[#444444]'}
                                 `
                               }
                             >
