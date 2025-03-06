@@ -20,21 +20,54 @@ import {
 } from "@/components/ui/collapsible"
 import Image from "next/image"
 
-import CodyLogo from '@/assets/icons/codyIconWithText.svg'
-import { Button } from "./ui/button"
+import Logo from '@/assets/icons/logo-theme-dark.svg'
 import { motion } from "framer-motion"
+import { Button } from "./Button"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { items, activeItem, activeSubItem, handleItemSelect } = useTourStore()
+  const {
+    items,
+    activeItem,
+    activeSubItem,
+    handleItemSelect,
+    setActiveSubItem,
+    setCurrentStep,
+    setIsVideoPlaying
+  } = useTourStore()
   const [isMoving, setIsMoving] = React.useState(false)
+
+  const handleSubItemClick = (subItem: any) => {
+    setActiveSubItem(subItem);
+    setCurrentStep(activeItem.subItems.indexOf(subItem));
+
+    // Play the video after a short delay to ensure the video element is properly updated
+    setTimeout(() => {
+      const videoElement = document.querySelector('video');
+      if (videoElement) {
+        videoElement.currentTime = 0;
+        videoElement.play()
+          .then(() => {
+            setIsVideoPlaying(true);
+          })
+          .catch(err => console.error("Video playback failed:", err));
+      }
+    }, 50);
+  };
+
+  const handleMainItemClick = (item: any) => {
+    handleItemSelect(item);
+
+    // Reset video state when changing main items
+    setIsVideoPlaying(false);
+  };
 
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <div className="grid flex-1 text-sm leading-tight justify-start items-center">
-              <Image src={CodyLogo} alt="cody" width={100} />
+            <div className="grid flex-1 my-5 text-sm leading-tight justify-start items-center">
+              <Image src={Logo} alt="cody" width={200} />
             </div>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -70,9 +103,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               mass: 0.5
             }}
           >
-            <div className="w-2 h-2 bg-white rounded-full" />
+            <div className="w-2 h-2 bg-link rounded-full" />
             {!isMoving && <motion.div
-              className="absolute w-2 h-2 rounded-full border border-white opacity-60"
+              className="absolute w-2 h-2 rounded-full border border-link opacity-60"
               animate={{
                 opacity: [0.6, 0],
                 scale: [1, 3]
@@ -81,7 +114,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 duration: 2.5,
                 times: [0, 1],
                 repeat: Infinity,
-                // delay: 0.8,
                 ease: "linear",
                 repeatDelay: 0
               }}
@@ -97,17 +129,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <Collapsible key={item.id} asChild defaultOpen={item.isActive}>
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  onClick={() => handleItemSelect(item)}
+                  onClick={() => handleMainItemClick(item)}
                   className={`
-                    flex items-center gap-3 px-4 py-2
+                    flex items-center gap-3 px-4 py-2 text-dark-text-primary
                     ${activeItem.id === item.id
-                      ? 'bg-sidebar-accent text-sidebar-primary-foreground'
+                      ? 'bg-sidebar-accent text-dark-text-primary'
                       : ''
                     }
                   `}
                 >
-                  <Image alt="cody" className="size-4" src={item.icon} />
-                  <span className="flex-1 truncate text-sm">{item.title}</span>
+                  <Image alt="cody" className="size-5" src={item.icon} />
+                  <span className="flex-1 truncate text-base">{item.title}</span>
                 </SidebarMenuButton>
                 {item.subItems?.length && (
                   <>
@@ -116,12 +148,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         {item.subItems.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.id}>
                             <SidebarMenuSubButton
+                              onClick={() => handleSubItemClick(subItem)}
                               className={`
-                                  hover:bg-transparent active:bg-transparent ${activeSubItem?.id === subItem.id && activeItem.id === item.id
-                                  ? 'text-current hover:text-current'
+                                hover:bg-transparent active:bg-transparent text-base
+                                ${activeSubItem?.id === subItem.id && activeItem.id === item.id
+                                  ? 'text-link hover:text-link'
                                   : 'text-[#444444] hover:text-[#444444] active:text-[#444444]'}
-                                `
-                              }
+                              `}
                             >
                               <span>{subItem.title}</span>
                             </SidebarMenuSubButton>
@@ -141,8 +174,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <div className="w-full mt-auto p-8 flex justify-center">
               <Button
-                className="w-[180px] bg-[linear-gradient(92.92deg,_#ffffffe6,_#ffffffb3)] text-black hover:opacity-90 transition-opacity
-          py-6 px-12 rounded-sm shadow-lg text-sm flex-grow flex items-center justify-center"
+                className="w-[180px] bg-vermilion-07 text-black hover:opacity-90 transition-opacity px-12 rounded-sm shadow-lg text-sm flex-grow flex items-center justify-center"
+                href="/cody"
+                variant="primary"
               >
                 Contact Sales
               </Button>

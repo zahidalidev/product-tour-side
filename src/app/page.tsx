@@ -17,6 +17,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import Image from 'next/image'
+import { TourContent } from '@/components/TourContent'
 
 export default function Home() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -80,13 +81,13 @@ export default function Home() {
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
+            <SidebarTrigger className="-ml-1 text-dark-text-primary" />
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbPage>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-dark-text-primary">
                       <Image alt="cody" className="size-4" src={activeItem.icon} />
                       {activeItem.title}
                     </div>
@@ -94,14 +95,14 @@ export default function Home() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{activeSubItem?.title}</BreadcrumbPage>
+                  <BreadcrumbPage className='text-dark-text-primary' >{activeSubItem?.title}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0 w-[94%] mx-auto justify-center">
-          <div className="h-[82vh] rounded-xl bg-muted/50">
+          {/* <div className="h-[82vh] rounded-xl bg-muted/50">
             {useMemo(() => (
               <iframe
                 key={activeItem.id}
@@ -117,6 +118,9 @@ export default function Home() {
                 }}
               />
             ), [activeItem.id, activeItem.demoId])}
+          </div> */}
+          <div className="h-[82vh] rounded-xl bg-vermilion-00">
+            <TourContent />
           </div>
         </div>
       </SidebarInset>
