@@ -14,7 +14,7 @@ export function TourContent() {
   } = useTourStore()
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [videoEnded, setVideoEnded] = useState(false)
+  // const [videoEnded, setVideoEnded] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [nextFocusPoint, setNextFocusPoint] = useState<{ xPercent: number, yPercent: number, description: string } | null>(null)
   const [debug, setDebug] = useState(false)
@@ -81,13 +81,13 @@ export function TourContent() {
 
     const handleVideoEnd = () => {
       setIsVideoPlaying(false)
-      setVideoEnded(true)
+      // setVideoEnded(true)
     }
 
     // Clean and reset video and states when active sub-item changes
     video.currentTime = 0
     video.pause()
-    setVideoEnded(false)
+    // setVideoEnded(false)
     setNextFocusPoint(null)
 
     // Reset the transitioning state when changing sub-items
@@ -160,7 +160,7 @@ export function TourContent() {
       videoRef.current.play()
         .then(() => {
           setIsVideoPlaying(true);
-          setVideoEnded(false);
+          // setVideoEnded(false);
 
           // If keepFocusPointVisible is true and we have a next item
           if (activeSubItem?.keepFocusPointVisible && nextSubItem) {

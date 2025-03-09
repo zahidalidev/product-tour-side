@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTourStore } from '@/stores/tour-store'
 import { AppSidebar } from "@/components/app-sidebar"
 import {

@@ -36,7 +36,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   } = useTourStore()
   const [isMoving, setIsMoving] = React.useState(false)
 
-  const handleSubItemClick = (subItem: any) => {
+
+  const handleSubItemClick = (subItem: typeof activeItem.subItems[0]) => {
     setActiveSubItem(subItem);
     setCurrentStep(activeItem.subItems.indexOf(subItem));
 
@@ -54,7 +55,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     }, 50);
   };
 
-  const handleMainItemClick = (item: any) => {
+  const handleMainItemClick = (item: typeof items[0]) => {
     handleItemSelect(item);
 
     // Reset video state when changing main items
