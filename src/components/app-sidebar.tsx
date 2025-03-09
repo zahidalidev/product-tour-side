@@ -131,15 +131,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuButton
                   onClick={() => handleMainItemClick(item)}
                   className={`
-                    flex items-center gap-3 px-4 py-2 text-dark-text-primary
+                    flex hover:bg-[#200302] items-center gap-3 px-4 py-2 text-dark-text-primary
                     ${activeItem.id === item.id
-                      ? 'bg-sidebar-accent text-dark-text-primary'
+                      ? 'bg-[#200302] text-dark-text-primary'
                       : ''
                     }
                   `}
                 >
                   <Image alt="cody" className="size-5" src={item.icon} />
-                  <span className="flex-1 truncate text-base">{item.title}</span>
+                  <span className="flex-1 truncate text-[0.9rem]">{item.title}</span>
                 </SidebarMenuButton>
                 {item.subItems?.length && (
                   <>
@@ -150,7 +150,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                             <SidebarMenuSubButton
                               onClick={() => handleSubItemClick(subItem)}
                               className={`
-                                hover:bg-transparent active:bg-transparent text-base
+                                hover:bg-transparent cursor-pointer active:bg-transparent text-[0.9rem]
                                 ${activeSubItem?.id === subItem.id && activeItem.id === item.id
                                   ? 'text-link hover:text-link'
                                   : 'text-[#444444] hover:text-[#444444] active:text-[#444444]'}

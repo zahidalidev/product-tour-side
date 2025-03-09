@@ -315,20 +315,27 @@ export function TourContent() {
               />
 
               {/* Tooltip Card */}
-              <div className="absolute left-8 top-[-10px] z-50">
+              <div className="absolute left-12 top-[-42px] z-50">
                 <div className="relative">
                   {/* Tooltip Arrow */}
-                  <div className="absolute left-[-12px] top-[50%] transform translate-y-[-50%] w-3 h-3 
-                                 border-t-[6px] border-t-transparent 
-                                 border-r-[6px] border-r-vermilion-11
-                                 border-b-[6px] border-b-transparent" />
+
+                  <svg
+                    width="16"
+                    height="24"
+                    viewBox="0 0 12 20"
+                    fill="none"
+                    className="absolute left-[-13px] top-[50%] transform translate-y-[-50%]"
+                  >
+                    <path
+                      d="M0 10L12 2L12 18L0 10Z"
+                      fill="#FFF3F0"
+                    />
+                  </svg>
 
                   {/* Tooltip Card Body */}
-                  <div className="bg-gradient-to-r from-vermilion-11 to-vermilion-11 
-                                text-vermilion-00 rounded-md py-2 px-3 
-                                shadow-lg min-w-[220px] max-w-[220px] flex flex-col justify-center">
-                    <h4 className="text-base font-bold mb-1">Focus Point</h4>
-                    <p className="text-sm font-medium leading-tight">
+                  <div className="bg-gradient-to-r from-vermilion-11 to-vermilion-11 text-vermilion-00 rounded-md py-2 px-5 shadow-lg min-w-[311px] min-h-[105px] flex flex-col justify-center">
+                    <h4 className="text-lg font-bold my-1">Focus Point</h4>
+                    <p className="text-sm font-base leading-tight">
                       {nextFocusPoint ? nextFocusPoint.description : activeSubItem.focusPoints[0].description}
                     </p>
                   </div>
