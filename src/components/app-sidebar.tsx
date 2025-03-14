@@ -74,7 +74,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="relative">
-        {activeSubItem && (
+        {/* {activeSubItem && (
           <motion.div
             className="absolute left-[12px] z-10"
             initial={false}
@@ -124,7 +124,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               }}
             />}
           </motion.div>
-        )}
+        )} */}
         <SidebarMenu>
           {items.map((item) => (
             <Collapsible key={item.id} asChild defaultOpen={item.isActive}>
