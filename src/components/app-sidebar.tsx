@@ -37,9 +37,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [isMoving, setIsMoving] = React.useState(false)
 
 
-  const handleSubItemClick = (subItem: typeof activeItem.subItems[0]) => {
+  const handleSubItemClick = (item: typeof items[0], subItem: typeof activeItem.subItems[0]) => {
+    // First, set the main item as active
+    handleItemSelect(item);
+
+    // Then set the specific sub-item (instead of the default first one)
     setActiveSubItem(subItem);
-    setCurrentStep(activeItem.subItems.indexOf(subItem));
+    setCurrentStep(item.subItems.indexOf(subItem));
 
     // Play the video after a short delay to ensure the video element is properly updated
     setTimeout(() => {
@@ -149,13 +153,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         {item.subItems.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.id}>
                             <SidebarMenuSubButton
-                              onClick={() => handleSubItemClick(subItem)}
-                              className={`
-                                hover:bg-transparent cursor-pointer active:bg-transparent text-[0.9rem]
-                                ${activeSubItem?.id === subItem.id && activeItem.id === item.id
-                                  ? 'text-link hover:text-link'
-                                  : 'text-[#444444] hover:text-[#444444] active:text-[#444444]'}
-                              `}
+                              onClick={() => handleSubItemClick(item, subItem)}
+                              className={`hover:bg-transparent cursor-pointer active:bg-transparent text-[0.9rem] ${activeSubItem?.id === subItem.id && activeItem.id === item.id
+                                ? 'text-link hover:text-link'
+                                : 'text-[#444444] hover:text-[#444444] active:text-[#444444]'}`}
                             >
                               <span>{subItem.title}</span>
                             </SidebarMenuSubButton>
