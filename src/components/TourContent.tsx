@@ -61,14 +61,22 @@ export function TourContent() {
   // Calculate actual pixel positions from percentages
   const [focusPointPosition, setFocusPointPosition] = useState({ x: 0, y: 0 })
   const [nextFocusPointPosition, setNextFocusPointPosition] = useState({ x: 0, y: 0 })
-  const [initialCenterPosition, setInitialCenterPosition] = useState(() => {
+  const [initialCenterPosition, setInitialCenterPosition] = useState({
+    x: 0,
+    y: 0
+  });
+
+
+  // Then add this useEffect to set the initial position after component mounts
+  useEffect(() => {
+    // This code only runs in the browser after the component mounts
     const width = window.innerWidth;
     const height = window.innerHeight;
-    return {
+    setInitialCenterPosition({
       x: (ANIMATION_CONFIG.initialOffsetX / 100) * width,
       y: (ANIMATION_CONFIG.initialOffsetY / 100) * height
-    };
-  });
+    });
+  }, []);
 
   // Calculate pixel positions whenever container size changes or active sub-item changes
   const calculatePositions = () => {
