@@ -36,20 +36,18 @@ export type SidebarItem = {
 export const sidebarItems: SidebarItem[] = [
   {
     id: 1,
-    title: 'Chat',
-    description: "Experience Cody's chat capabilities for faster coding",
+    title: 'Code Search',
+    description: 'Powerful code search across repositories',
     icon: ChatIcon,
     isActive: true,
     subItems: [
       {
         id: '1-1',
-        title: 'LLM Selection',
-        description: 'Choose your preferred language model',
+        title: 'Basic Search',
+        description: 'Search through your codebase',
         videoSrc: '/product-tour/assets/demo/demo_1.mp4',
-        focusPoints: [
-          { xPercent: 53, yPercent: 30, description: 'Select your model from the dropdown' },
-        ],
-        transitionDelay: 4000, // 4 seconds
+        focusPoints: [{ xPercent: 53, yPercent: 30, description: 'Enter your search query' }],
+        transitionDelay: 4000,
         keepFocusPointVisible: true,
         initialDuration: 3.5,
         transitionDuration: 1.8,
@@ -86,21 +84,19 @@ export const sidebarItems: SidebarItem[] = [
   },
   {
     id: 2,
-    title: 'Autocomplete',
-    description: 'Code faster with AI-powered autocompletion',
+    title: 'Cody — AI Assistant',
+    description: 'AI-powered coding assistant',
     icon: AutocompleteIcon,
     isActive: true,
     subItems: [
       {
         id: '2-1',
-        title: 'Smart Predictions',
-        description: 'AI-powered code suggestions',
+        title: 'Chat Interface',
+        description: 'Interact with Cody',
         videoSrc: '/product-tour/assets/demo/demo_5.mp4',
-        focusPoints: [
-          { xPercent: 31, yPercent: 24, description: 'Get intelligent code suggestions' },
-        ],
+        focusPoints: [{ xPercent: 31, yPercent: 24, description: 'Start chatting with Cody' }],
         keepFocusPointVisible: true,
-        transitionDelay: 2000, // 2 seconds
+        transitionDelay: 2000,
         initialDuration: 3.5,
         transitionDuration: 4.0,
       },
@@ -119,19 +115,17 @@ export const sidebarItems: SidebarItem[] = [
   },
   {
     id: 3,
-    title: 'Context',
-    description: 'Cody understands your codebase context',
+    title: 'Code Navigation',
+    description: 'Navigate through your codebase efficiently',
     icon: ContextIcon,
     isActive: true,
     subItems: [
       {
         id: '3-1',
-        title: 'Multi-Repo Context',
-        description: 'Access code across repositories',
+        title: 'Jump to Definition',
+        description: 'Quick code navigation',
         videoSrc: '/product-tour/assets/demo/demo_1.mp4',
-        focusPoints: [
-          { xPercent: 52, yPercent: 30, description: 'See multi-repo context in action' },
-        ],
+        focusPoints: [{ xPercent: 52, yPercent: 30, description: 'Navigate code definitions' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
       },
@@ -157,17 +151,17 @@ export const sidebarItems: SidebarItem[] = [
   },
   {
     id: 4,
-    title: 'Prompts',
-    description: 'Enhance productivity with prompt templates',
+    title: 'Code Insights',
+    description: 'Analyze code patterns and metrics',
     icon: PromptsIcon,
     isActive: true,
     subItems: [
       {
         id: '4-1',
-        title: 'Prompts & Props Library',
-        description: 'Access pre-built prompts and properties',
+        title: 'Dashboard',
+        description: 'View code analytics',
         videoSrc: '/product-tour/assets/demo/demo_4.mp4',
-        focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Browse the prompt library' }],
+        focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Explore code insights' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
       },
@@ -179,6 +173,90 @@ export const sidebarItems: SidebarItem[] = [
         focusPoints: [{ xPercent: 32, yPercent: 86, description: 'Use community-created prompts' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Code Monitoring',
+    description: 'Track code changes and patterns',
+    icon: PromptsIcon,
+    isActive: true,
+    subItems: [
+      {
+        id: '5-1',
+        title: 'Monitors',
+        description: 'Set up code monitors',
+        videoSrc: '/product-tour/assets/demo/demo_4.mp4',
+        focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Configure monitoring' }],
+        initialDuration: 3.5,
+        transitionDuration: 4.0,
+      },
+      {
+        id: '5-2',
+        title: 'Inline Edits',
+        description: 'Make quick code modifications directly',
+        videoSrc: '/product-tour/assets/demo/demo_2.mp4',
+        focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Edit code inline with Cody' }],
+        transitionDelay: 36000, // 36 seconds
+        initialDuration: 2,
+        transitionDuration: 0,
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: 'Batch Changes',
+    description: 'Make large-scale code changes',
+    icon: PromptsIcon,
+    isActive: true,
+    subItems: [
+      {
+        id: '6-1',
+        title: 'Create Batch',
+        description: 'Initialize batch changes',
+        videoSrc: '/product-tour/assets/demo/demo_4.mp4',
+        focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Start batch operation' }],
+        initialDuration: 3.5,
+        transitionDuration: 4.0,
+      },
+      {
+        id: '6-2',
+        title: 'Inline Edits',
+        description: 'Make quick code modifications directly',
+        videoSrc: '/product-tour/assets/demo/demo_2.mp4',
+        focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Edit code inline with Cody' }],
+        transitionDelay: 36000, // 36 seconds
+        initialDuration: 2,
+        transitionDuration: 0,
+      },
+    ],
+  },
+  {
+    id: 7,
+    title: 'Agents',
+    description: 'Manage automated agents',
+    icon: PromptsIcon,
+    isActive: true,
+    subItems: [
+      {
+        id: '7-1',
+        title: 'Agent Overview',
+        description: 'View active agents',
+        videoSrc: '/product-tour/assets/demo/demo_4.mp4',
+        focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Monitor agents' }],
+        initialDuration: 3.5,
+        transitionDuration: 4.0,
+      },
+      {
+        id: '7-2',
+        title: 'Inline Edits',
+        description: 'Make quick code modifications directly',
+        videoSrc: '/product-tour/assets/demo/demo_2.mp4',
+        focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Edit code inline with Cody' }],
+        transitionDelay: 36000, // 36 seconds
+        initialDuration: 2,
+        transitionDuration: 0,
       },
     ],
   },

@@ -77,7 +77,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="relative">
+      <SidebarContent className="relative hide-scrollbar">
         {/* {activeSubItem && (
           <motion.div
             className="absolute left-[12px] z-10"
