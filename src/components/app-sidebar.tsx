@@ -21,7 +21,6 @@ import {
 import Image from "next/image"
 
 import Logo from '@/assets/icons/logo-theme-dark.svg'
-import { motion } from "framer-motion"
 import { Button } from "./Button"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -34,8 +33,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     setCurrentStep,
     setIsVideoPlaying
   } = useTourStore()
-  const [isMoving, setIsMoving] = React.useState(false)
-
 
   const handleSubItemClick = (item: typeof items[0], subItem: typeof activeItem.subItems[0]) => {
     // First, set the main item as active

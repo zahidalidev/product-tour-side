@@ -4,8 +4,6 @@ import CodeSearch from '@/assets/icons/codeSearch.svg'
 import Cody from '@/assets/icons/cody.svg'
 import Agents from '@/assets/icons/agents.svg'
 import BatchChanges from '@/assets/icons/batchChanges.svg'
-import ChatIcon from '@/assets/icons/chat.svg'
-import AutocompleteIcon from '@/assets/icons/autocomplete.svg'
 import ContextIcon from '@/assets/icons/context.svg'
 import PromptsIcon from '@/assets/icons/prompts.svg'
 
