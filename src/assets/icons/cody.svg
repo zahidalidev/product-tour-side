@@ -4,23 +4,23 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M3.97409 15.2689C3.24387 14.3205 1.86346 14.1366 0.883172 14.8528C-0.0971195 15.5689 -0.287176 16.9238 0.443041 17.8722C0.443041 17.8722 0.453044 17.8915 0.463047 17.9012C0.47305 17.9206 0.493056 17.9399 0.513062 17.9593C0.553074 18.0077 0.603089 18.0754 0.673109 18.1528C0.813151 18.3077 1.00321 18.5206 1.25328 18.7625C1.75343 19.2464 2.47364 19.8851 3.43393 20.5142C5.3545 21.7819 8.22535 23.04 11.9965 23.04C15.7676 23.04 18.6384 21.7819 20.559 20.5142C21.5193 19.8851 22.2395 19.2464 22.7397 18.7625C22.9897 18.5206 23.1798 18.3077 23.3198 18.1528C23.3899 18.0754 23.4399 18.0077 23.4799 17.9593C23.4999 17.9302 23.5399 17.8819 23.5599 17.8625C23.5599 17.8625 23.5599 17.8625 23.5599 17.8722V17.8625C24.2901 16.9044 24.0901 15.5496 23.1198 14.8334C22.1495 14.1173 20.7691 14.3108 20.0289 15.2496C20.0189 15.2592 19.9989 15.2883 19.9588 15.327C19.8888 15.4044 19.7688 15.5399 19.6087 15.6947C19.2786 16.0141 18.7685 16.4593 18.0883 16.9141C16.7379 17.8044 14.7073 18.7045 11.9965 18.7045C9.28567 18.7045 7.26507 17.8044 5.90466 16.9141C5.22446 16.4689 4.71431 16.0238 4.38421 15.6947C4.22416 15.5302 4.10413 15.4044 4.03411 15.327C3.9941 15.2883 3.97409 15.2592 3.96409 15.2496L3.97409 15.2689Z" fill="url(#paint2_linear_1212_212)"/>
 <defs>
 <radialGradient id="paint0_radial_1212_212" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(10.757 10.5622) rotate(-10.1658) scale(9.62768 12.1631)">
-<stop offset="0.5" stop-color="#D3D3D3"/>
-<stop offset="0.88" stop-color="#D3D3D3"/>
+<stop offset="0.5" stop-color="#FFF3F0"/>
+<stop offset="0.88" stop-color="#FFF3F0"/>
 </radialGradient>
 <linearGradient id="paint1_linear_1212_212" x1="2.97881" y1="7.94281" x2="12.2655" y2="3.25835" gradientUnits="userSpaceOnUse">
-<stop stop-color="#D3D3D3"/>
-<stop offset="0.21" stop-color="#D3D3D3"/>
-<stop offset="0.36" stop-color="#D3D3D3"/>
-<stop offset="0.5" stop-color="#D3D3D3"/>
-<stop offset="0.62" stop-color="#D3D3D3"/>
-<stop offset="0.74" stop-color="#D3D3D3"/>
-<stop offset="0.85" stop-color="#D3D3D3"/>
-<stop offset="0.96" stop-color="#D3D3D3"/>
-<stop offset="1" stop-color="#D3D3D3"/>
+<stop stop-color="#FFF3F0"/>
+<stop offset="0.21" stop-color="#FFF3F0"/>
+<stop offset="0.36" stop-color="#FFF3F0"/>
+<stop offset="0.5" stop-color="#FFF3F0"/>
+<stop offset="0.62" stop-color="#FFF3F0"/>
+<stop offset="0.74" stop-color="#FFF3F0"/>
+<stop offset="0.85" stop-color="#FFF3F0"/>
+<stop offset="0.96" stop-color="#FFF3F0"/>
+<stop offset="1" stop-color="#FFF3F0"/>
 </linearGradient>
 <linearGradient id="paint2_linear_1212_212" x1="0.424978" y1="19.6316" x2="24.4313" y2="19.441" gradientUnits="userSpaceOnUse">
-<stop offset="0.15" stop-color="#D3D3D3"/>
-<stop offset="0.98" stop-color="#D3D3D3"/>
+<stop offset="0.15" stop-color="#FFF3F0"/>
+<stop offset="0.98" stop-color="#FFF3F0"/>
 </linearGradient>
 </defs>
 </svg>

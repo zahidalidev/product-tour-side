@@ -1,5 +1,9 @@
 import { create } from 'zustand'
 
+import CodeSearch from '@/assets/icons/codeSearch.svg'
+import Cody from '@/assets/icons/cody.svg'
+import Agents from '@/assets/icons/agents.svg'
+import BatchChanges from '@/assets/icons/batchChanges.svg'
 import ChatIcon from '@/assets/icons/chat.svg'
 import AutocompleteIcon from '@/assets/icons/autocomplete.svg'
 import ContextIcon from '@/assets/icons/context.svg'
@@ -38,7 +42,7 @@ export const sidebarItems: SidebarItem[] = [
     id: 1,
     title: 'Code Search',
     description: 'Powerful code search across repositories',
-    icon: ChatIcon,
+    icon: CodeSearch,
     isActive: true,
     subItems: [
       {
@@ -86,7 +90,7 @@ export const sidebarItems: SidebarItem[] = [
     id: 2,
     title: 'Cody — AI Assistant',
     description: 'AI-powered coding assistant',
-    icon: AutocompleteIcon,
+    icon: Cody,
     isActive: true,
     subItems: [
       {
@@ -208,7 +212,7 @@ export const sidebarItems: SidebarItem[] = [
     id: 6,
     title: 'Batch Changes',
     description: 'Make large-scale code changes',
-    icon: PromptsIcon,
+    icon: BatchChanges,
     isActive: true,
     subItems: [
       {
@@ -236,7 +240,7 @@ export const sidebarItems: SidebarItem[] = [
     id: 7,
     title: 'Agents',
     description: 'Manage automated agents',
-    icon: PromptsIcon,
+    icon: Agents,
     isActive: true,
     subItems: [
       {
