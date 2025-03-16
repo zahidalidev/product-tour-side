@@ -140,7 +140,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     }
                   `}
                 >
-                  <Image alt="cody" className="size-5" src={item.icon} />
+                  <Image alt="cody" className={item.id !== 1 ? "size-5" : ""} src={item.icon} />
                   <span className="flex-1 truncate text-[0.9rem]">{item.title}</span>
                 </SidebarMenuButton>
                 {item.subItems?.length && (
