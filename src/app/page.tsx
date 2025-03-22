@@ -102,23 +102,6 @@ export default function Home() {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0 w-[94%] mx-auto justify-center">
-          {/* <div className="h-[82vh] rounded-xl bg-muted/50">
-            {useMemo(() => (
-              <iframe
-                key={activeItem.id}
-                ref={iframeRef}
-                className="sl-demo"
-                src={`https://app.storylane.io/demo/${activeItem.demoId}`}
-                allow="fullscreen"
-                allowFullScreen
-                suppressHydrationWarning
-                style={{
-                  width: '100%',
-                  height: '100%',
-                }}
-              />
-            ), [activeItem.id, activeItem.demoId])}
-          </div> */}
           <div className="h-[82vh] rounded-xl bg-vermilion-00">
             <TourContent />
           </div>

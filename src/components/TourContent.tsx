@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import React, { useRef, useEffect, useState } from "react"
 import { useTourStore } from "@/stores/tour-store"
+import Image from "next/image"
 
 // Animation parameters that you can adjust
 const ANIMATION_CONFIG = {
@@ -46,7 +47,6 @@ export function TourContent() {
   } = useTourStore()
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  // const [videoEnded, setVideoEnded] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [nextFocusPoint, setNextFocusPoint] = useState<{ xPercent: number, yPercent: number, description: string } | null>(null)
   const [debug, setDebug] = useState(false)
@@ -58,6 +58,9 @@ export function TourContent() {
   // Check if this is the first sub-item of the first menu item
   const isFirstSubItem = activeItem.id === 1 && activeSubItem?.id === '1-1';
 
+  // Check if current media is a video
+  const isVideo = activeSubItem?.mediaContent?.type === 'video';
+
   // Calculate actual pixel positions from percentages
   const [focusPointPosition, setFocusPointPosition] = useState({ x: 0, y: 0 })
   const [nextFocusPointPosition, setNextFocusPointPosition] = useState({ x: 0, y: 0 })
@@ -65,7 +68,6 @@ export function TourContent() {
     x: 0,
     y: 0
   });
-
 
   // Then add this useEffect to set the initial position after component mounts
   useEffect(() => {
@@ -171,18 +173,19 @@ export function TourContent() {
 
   // Video setup and cleanup
   useEffect(() => {
+    // Only run this effect for video content
+    if (!isVideo) return;
+
     const video = videoRef.current
     if (!video) return
 
     const handleVideoEnd = () => {
       setIsVideoPlaying(false)
-      // setVideoEnded(true)
     }
 
     // Clean and reset video and states when active sub-item changes
     video.currentTime = 0
     video.pause()
-    // setVideoEnded(false)
     setNextFocusPoint(null)
 
     // Reset the transitioning state when changing sub-items
@@ -195,7 +198,7 @@ export function TourContent() {
       // Remove event listeners on cleanup
       video.removeEventListener('ended', handleVideoEnd)
     }
-  }, [activeSubItem?.id, setIsVideoPlaying]);
+  }, [activeSubItem?.id, setIsVideoPlaying, isVideo]);
 
   // Move to the next point or item
   const moveToNextPoint = () => {
@@ -223,7 +226,7 @@ export function TourContent() {
     setLastClickTime(now);
 
     // Don't proceed if video is already playing
-    if (isVideoPlaying) {
+    if (isVideo && isVideoPlaying) {
       if (debug) console.log("Click ignored: Video is already playing");
       return;
     }
@@ -249,14 +252,13 @@ export function TourContent() {
       }
     }
 
-    // Play the current video when focus point is clicked
-    if (videoRef.current) {
+    // For video content, play the video
+    if (isVideo && videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.play()
         .then(() => {
           setIsVideoPlaying(true);
           setTooltipVisible(false); // Hide tooltip when video starts playing
-          // setVideoEnded(false);
 
           // If keepFocusPointVisible is true and we have a next item
           if (activeSubItem?.keepFocusPointVisible && nextSubItem) {
@@ -312,6 +314,37 @@ export function TourContent() {
           setIsVideoPlaying(false);
           setIsTransitioning(false);
         });
+    } else {
+      // For image content, just move to the next point after a delay
+      const delay = activeSubItem?.transitionDelay;
+
+      // If we have a next item and keepFocusPointVisible is true, animate to it
+      if (activeSubItem?.keepFocusPointVisible && nextSubItem?.focusPoints?.length) {
+        setNextFocusPoint(nextSubItem.focusPoints[0]);
+        setIsTransitioning(true);
+        setAnimationComplete(false);
+
+        // Calculate position for the next focus point
+        if (containerRef.current) {
+          const container = containerRef.current;
+          const rect = container.getBoundingClientRect();
+          const { width, height } = rect;
+
+          setNextFocusPointPosition({
+            x: (nextSubItem.focusPoints[0].xPercent / 100) * width,
+            y: (nextSubItem.focusPoints[0].yPercent / 100) * height
+          });
+        }
+      }
+
+      // Move to next point after the delay
+      const timerId = setTimeout(() => {
+        moveToNextPoint();
+        setIsTransitioning(false);
+        setNextFocusPoint(null);
+      }, delay);
+
+      return () => clearTimeout(timerId);
     }
   }
 
@@ -399,11 +432,14 @@ export function TourContent() {
       {debug && (
         <div className="absolute top-0 left-0 bg-black bg-opacity-80 text-white p-2 z-[9999]">
           <p>Debug Mode: Click anywhere to get coordinates</p>
-          <p className="text-xs mt-1">States: {isVideoPlaying ? 'Playing' : 'Paused'},
+          <p className="text-xs mt-1">
+            States: {isVideoPlaying ? 'Playing' : 'Paused'},
             {isTransitioning ? 'Transitioning' : 'Not Transitioning'},
             {animationComplete ? 'Animation Complete' : 'Animating'},
             {tooltipVisible ? 'Tooltip Visible' : 'Tooltip Hidden'},
-            {isFirstSubItem ? 'First Sub-Item' : 'Not First Sub-Item'}</p>
+            {isFirstSubItem ? 'First Sub-Item' : 'Not First Sub-Item'},
+            {isVideo ? 'Video Content' : 'Image Content'}
+          </p>
           <div className="mt-2 text-xs" id="debug-coords"></div>
           <div className="mt-2 text-xs">
             <p>Animation Config:</p>
@@ -452,24 +488,30 @@ export function TourContent() {
           >
             <div className="relative">
               {/* Focus point indicator */}
-              <div className="w-6 h-6 bg-vermilion-07 rounded-full" />
+
               <motion.div
-                className="absolute top-0 left-0 w-6 h-6 rounded-full border-4 border-vermilion-07"
-                initial={{ scale: 1, opacity: 0.8 }}
-                animate={{ scale: 1.5, opacity: 0 }}
+                className="absolute top-0 left-0 w-[1.25rem] h-[1.25rem] rounded-full bg-vermilion-07"
+                initial={{ scale: 1, opacity: 0.9 }}
+                animate={{
+                  scale: [0.9, 1.55, 0.9],
+                  opacity: [0.9, 1, 0.9]
+                }}
                 transition={{
-                  duration: 2,
+                  duration: 4,
                   repeat: Infinity,
                   repeatType: "loop",
-                  repeatDelay: 0.1,
-                  ease: [0.33, 0, 0.67, 1], // Custom easing
-                  times: [0, 1]
+                  ease: "easeInOut",
+                  times: [0, 0.5, 1],
                 }}
                 style={{
-                  willChange: "transform, opacity", // Performance optimization
-                  backfaceVisibility: "hidden", // Reduce flickering
+                  willChange: "transform, opacity",
+                  backfaceVisibility: "hidden",
+                  transformOrigin: "center center",
+                  zIndex: 0,
                 }}
               />
+
+              <div className="w-[1.25rem] h-[1.25rem] bg-vermilion-11 rounded-full relative z-10" />
 
               {/* Tooltip Card - With AnimatePresence for smooth transitions */}
               <AnimatePresence>
@@ -514,17 +556,27 @@ export function TourContent() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Video Element */}
-      <video
-        ref={videoRef}
-        className="w-full h-full object-cover"
-        src={activeSubItem.videoSrc}
-        muted
-        playsInline
-        onEnded={handleVideoEnd}
-      />
+      {/* Media Content - Conditionally render video or image based on content type */}
+      {isVideo ? (
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          src={activeSubItem.mediaContent.src}
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+        />
+      ) : (
+        <div className="w-full h-full">
+          <Image
+            src={activeSubItem.mediaContent.src}
+            alt={activeSubItem.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
     </div>
   )
 }
-

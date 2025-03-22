@@ -13,11 +13,18 @@ export type FocusPoint = {
   description: string
 }
 
+// Define a type for the media content
+export type MediaContent = {
+  type: 'video' | 'image'
+  src: string
+}
+
 export type SubItem = {
   id: string
   title: string
   description: string
-  videoSrc: string
+  // Replace videoSrc with mediaContent
+  mediaContent: MediaContent
   focusPoints: FocusPoint[]
   keepFocusPointVisible?: boolean
   transitionDelay?: number // Time in milliseconds before moving to next point
@@ -34,7 +41,7 @@ export type SidebarItem = {
   subItems: SubItem[]
 }
 
-// Main sidebar items with videos assigned to each sub-item - with percentage-based coordinates
+// Main sidebar items with videos/images assigned to each sub-item - with percentage-based coordinates
 export const sidebarItems: SidebarItem[] = [
   {
     id: 1,
@@ -47,10 +54,13 @@ export const sidebarItems: SidebarItem[] = [
         id: '1-1',
         title: 'Basic Search',
         description: 'Search through your codebase',
-        videoSrc: '/product-tour/assets/demo/demo_1.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_1.png',
+        },
         focusPoints: [{ xPercent: 53, yPercent: 30, description: 'Enter your search query' }],
-        transitionDelay: 4000,
-        keepFocusPointVisible: true,
+        transitionDelay: 0,
+        // keepFocusPointVisible: true,
         initialDuration: 3.5,
         transitionDuration: 1.8,
       },
@@ -58,9 +68,12 @@ export const sidebarItems: SidebarItem[] = [
         id: '1-2',
         title: 'Inline Edits',
         description: 'Make quick code modifications directly',
-        videoSrc: '/product-tour/assets/demo/demo_2.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_2.png',
+        },
         focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Edit code inline with Cody' }],
-        transitionDelay: 36000, // 36 seconds
+        transitionDelay: 0,
         initialDuration: 2,
         transitionDuration: 0,
       },
@@ -68,7 +81,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '1-3',
         title: 'Inline Bug Fix',
         description: 'Fix bugs without leaving your editor',
-        videoSrc: '/product-tour/assets/demo/demo_3.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_3.png',
+        },
         focusPoints: [{ xPercent: 56, yPercent: 40, description: 'Fix bugs instantly' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -77,7 +93,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '1-4',
         title: 'Smart Apply/Execute',
         description: 'Intelligent code execution and application',
-        videoSrc: '/product-tour/assets/demo/demo_4.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_1.png',
+        },
         focusPoints: [{ xPercent: 24, yPercent: 42, description: 'Apply changes with one click' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -95,10 +114,13 @@ export const sidebarItems: SidebarItem[] = [
         id: '2-1',
         title: 'Chat Interface',
         description: 'Interact with Cody',
-        videoSrc: '/product-tour/assets/demo/demo_5.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_2.png',
+        },
         focusPoints: [{ xPercent: 31, yPercent: 24, description: 'Start chatting with Cody' }],
         keepFocusPointVisible: true,
-        transitionDelay: 2000,
+        transitionDelay: 0,
         initialDuration: 3.5,
         transitionDuration: 4.0,
       },
@@ -106,7 +128,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '2-2',
         title: 'Natural Language Code Generation',
         description: 'Generate code from plain English',
-        videoSrc: '/product-tour/assets/demo/demo_6.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_3.png',
+        },
         focusPoints: [
           { xPercent: 29, yPercent: 84, description: 'Generate code with natural language' },
         ],
@@ -126,7 +151,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '3-1',
         title: 'Jump to Definition',
         description: 'Quick code navigation',
-        videoSrc: '/product-tour/assets/demo/demo_1.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_1.png',
+        },
         focusPoints: [{ xPercent: 52, yPercent: 30, description: 'Navigate code definitions' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -135,7 +163,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '3-2',
         title: '@-mention',
         description: 'Reference code and developers easily',
-        videoSrc: '/product-tour/assets/demo/demo_2.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_2.png',
+        },
         focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Mention code entities with @' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -144,7 +175,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '3-3',
         title: 'OpenCTX',
         description: 'Open context integration',
-        videoSrc: '/product-tour/assets/demo/demo_3.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_3.png',
+        },
         focusPoints: [{ xPercent: 56, yPercent: 40, description: 'Integrate with OpenCTX' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -162,7 +196,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '4-1',
         title: 'Dashboard',
         description: 'View code analytics',
-        videoSrc: '/product-tour/assets/demo/demo_4.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_1.png',
+        },
         focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Explore code insights' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -171,7 +208,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '4-2',
         title: 'Prompt Library',
         description: 'Browse and use community prompts',
-        videoSrc: '/product-tour/assets/demo/demo_5.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_2.png',
+        },
         focusPoints: [{ xPercent: 32, yPercent: 86, description: 'Use community-created prompts' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -189,7 +229,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '5-1',
         title: 'Monitors',
         description: 'Set up code monitors',
-        videoSrc: '/product-tour/assets/demo/demo_4.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_3.png',
+        },
         focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Configure monitoring' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -198,9 +241,12 @@ export const sidebarItems: SidebarItem[] = [
         id: '5-2',
         title: 'Inline Edits',
         description: 'Make quick code modifications directly',
-        videoSrc: '/product-tour/assets/demo/demo_2.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_1.png',
+        },
         focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Edit code inline with Cody' }],
-        transitionDelay: 36000, // 36 seconds
+        transitionDelay: 0,
         initialDuration: 2,
         transitionDuration: 0,
       },
@@ -217,7 +263,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '6-1',
         title: 'Create Batch',
         description: 'Initialize batch changes',
-        videoSrc: '/product-tour/assets/demo/demo_4.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_2.png',
+        },
         focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Start batch operation' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -226,9 +275,12 @@ export const sidebarItems: SidebarItem[] = [
         id: '6-2',
         title: 'Inline Edits',
         description: 'Make quick code modifications directly',
-        videoSrc: '/product-tour/assets/demo/demo_2.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_3.png',
+        },
         focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Edit code inline with Cody' }],
-        transitionDelay: 36000, // 36 seconds
+        transitionDelay: 0,
         initialDuration: 2,
         transitionDuration: 0,
       },
@@ -245,7 +297,10 @@ export const sidebarItems: SidebarItem[] = [
         id: '7-1',
         title: 'Agent Overview',
         description: 'View active agents',
-        videoSrc: '/product-tour/assets/demo/demo_4.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_1.png',
+        },
         focusPoints: [{ xPercent: 30, yPercent: 24, description: 'Monitor agents' }],
         initialDuration: 3.5,
         transitionDuration: 4.0,
@@ -254,9 +309,12 @@ export const sidebarItems: SidebarItem[] = [
         id: '7-2',
         title: 'Inline Edits',
         description: 'Make quick code modifications directly',
-        videoSrc: '/product-tour/assets/demo/demo_2.mp4',
+        mediaContent: {
+          type: 'image',
+          src: '/product-tour/assets/demo/demo_img_2.png',
+        },
         focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Edit code inline with Cody' }],
-        transitionDelay: 36000, // 36 seconds
+        transitionDelay: 0,
         initialDuration: 2,
         transitionDuration: 0,
       },
@@ -309,7 +367,7 @@ export const useTourStore = create<TourStore>((set) => ({
       return {
         activeItem: item,
         activeSubItem: item.subItems[0],
-        currentStep: 0, // Reset focus point index when changing items
+        currentStep: 0,
         isVideoPlaying: false,
         items: state.items.map((menuItem) => ({
           ...menuItem,
@@ -321,13 +379,11 @@ export const useTourStore = create<TourStore>((set) => ({
   playVideo: (subItem) => {
     set((state) => {
       if (subItem.id !== state.activeSubItem?.id) {
-        // If it's a different subItem, set it as active first
         return {
           activeSubItem: subItem,
           isVideoPlaying: true,
         }
       }
-      // Same subItem, just play
       return {
         isVideoPlaying: true,
       }

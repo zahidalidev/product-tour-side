@@ -42,18 +42,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     setActiveSubItem(subItem);
     setCurrentStep(item.subItems.indexOf(subItem));
 
-    // Play the video after a short delay to ensure the video element is properly updated
-    setTimeout(() => {
-      const videoElement = document.querySelector('video');
-      if (videoElement) {
-        videoElement.currentTime = 0;
-        videoElement.play()
-          .then(() => {
-            setIsVideoPlaying(true);
-          })
-          .catch(err => console.error("Video playback failed:", err));
-      }
-    }, 50);
+    // Only attempt to play video if the content type is video
+    if (subItem.mediaContent.type === 'video') {
+      // Play the video after a short delay to ensure the video element is properly updated
+      setTimeout(() => {
+        const videoElement = document.querySelector('video');
+        if (videoElement) {
+          videoElement.currentTime = 0;
+          videoElement.play()
+            .then(() => {
+              setIsVideoPlaying(true);
+            })
+            .catch(err => console.error("Video playback failed:", err));
+        }
+      }, 50);
+    }
   };
 
   const handleMainItemClick = (item: typeof items[0]) => {
@@ -69,63 +72,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <div className="grid flex-1 my-5 text-sm leading-tight justify-start items-center">
-              <Image src={Logo} alt="cody" width={200} />
+              <Image src={Logo} alt="cody" />
             </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="relative hide-scrollbar">
-        {/* {activeSubItem && (
-          <motion.div
-            className="absolute left-[12px] z-10"
-            initial={false}
-            layoutId="submenu-indicator"
-            animate={{
-              top: `${(() => {
-                const activeItemIndex = items.findIndex(item => item.id === activeItem.id)
-                const activeSubItemIndex = activeItem.subItems.findIndex(subItem => subItem.id === activeSubItem.id)
-
-                const subOffset = activeItemIndex == 0 ? 31 : 30.5
-                const previousItemsOffset = items
-                  .slice(0, activeItemIndex)
-                  .reduce((acc, item) => acc + (item.subItems?.length || 0) * subOffset, 0)
-                const mainItemsOffset = activeItemIndex * 40
-                const currentSubItemOffset = activeSubItemIndex * subOffset
-
-                const baseOffset = 45
-                return baseOffset + mainItemsOffset + previousItemsOffset + currentSubItemOffset
-              })()}px`
-            }}
-            onAnimationStart={() => setIsMoving(true)}
-            onAnimationComplete={() => setIsMoving(false)}
-            transition={{
-              type: "spring",
-              stiffness: 500,
-              damping: 35,
-              mass: 0.5
-            }}
-          >
-            <div className="w-2 h-2 bg-link rounded-full" />
-            {!isMoving && <motion.div
-              className="absolute w-2 h-2 rounded-full border border-link opacity-60"
-              animate={{
-                opacity: [0.6, 0],
-                scale: [1, 3]
-              }}
-              transition={{
-                duration: 2.5,
-                times: [0, 1],
-                repeat: Infinity,
-                ease: "linear",
-                repeatDelay: 0
-              }}
-              style={{
-                top: 0,
-                left: 0
-              }}
-            />}
-          </motion.div>
-        )} */}
         <SidebarMenu>
           {items.map((item) => (
             <Collapsible key={item.id} asChild defaultOpen={item.isActive}>
@@ -133,20 +85,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuButton
                   onClick={() => handleMainItemClick(item)}
                   className={`
-                    flex hover:bg-[#200302] items-center gap-3 px-4 py-2 text-dark-text-primary
+                    flex hover:bg-[#200302] items-center justify-center gap-3 px-4 py-2 text-dark-text-primary
                     ${activeItem.id === item.id
                       ? 'bg-[#200302] text-dark-text-primary'
                       : ''
                     }
                   `}
                 >
-                  <Image alt="cody" className={item.id !== 1 ? "size-5" : ""} src={item.icon} />
+                  <Image alt="cody" className="size-[18px]" src={item.icon} />
                   <span className="flex-1 truncate text-[0.9rem]">{item.title}</span>
                 </SidebarMenuButton>
                 {item.subItems?.length && (
                   <>
                     <CollapsibleContent>
-                      <SidebarMenuSub>
+                      <SidebarMenuSub className="border-none">
                         {item.subItems.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.id}>
                             <SidebarMenuSubButton
