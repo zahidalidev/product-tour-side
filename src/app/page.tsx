@@ -101,8 +101,8 @@ export default function Home() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0 w-[94%] mx-auto justify-center">
-          <div className="h-[82vh] rounded-xl bg-vermilion-00">
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0 w-[84%] mx-auto justify-center">
+          <div className="h-[75vh] rounded-xl bg-vermilion-00">
             <TourContent />
           </div>
         </div>

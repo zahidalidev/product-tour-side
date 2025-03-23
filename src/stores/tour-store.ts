@@ -58,7 +58,14 @@ export const sidebarItems: SidebarItem[] = [
           type: 'image',
           src: '/product-tour/assets/demo/demo_img_1.png',
         },
-        focusPoints: [{ xPercent: 53, yPercent: 30, description: 'Enter your search query' }],
+        focusPoints: [
+          {
+            xPercent: 53,
+            yPercent: 30,
+            description:
+              'Instantly receive intelligent code suggestions, context-aware answers, and integrated search results—right from your code editor or the web app.',
+          },
+        ],
         transitionDelay: 0,
         // keepFocusPointVisible: true,
         initialDuration: 3.5,
@@ -67,12 +74,20 @@ export const sidebarItems: SidebarItem[] = [
       {
         id: '1-2',
         title: 'Inline Edits',
-        description: 'Make quick code modifications directly',
+        description:
+          'Instantly receive intelligent code suggestions, context-aware answers, and integrated search results—right from your code editor or the web app.',
         mediaContent: {
           type: 'image',
           src: '/product-tour/assets/demo/demo_img_2.png',
         },
-        focusPoints: [{ xPercent: 38, yPercent: 16, description: 'Edit code inline with Cody' }],
+        focusPoints: [
+          {
+            xPercent: 38,
+            yPercent: 16,
+            description:
+              'Instantly receive intelligent code suggestions, context-aware answers, and integrated search results—right from your code editor or the web app.',
+          },
+        ],
         transitionDelay: 0,
         initialDuration: 2,
         transitionDuration: 0,
@@ -85,7 +100,14 @@ export const sidebarItems: SidebarItem[] = [
           type: 'image',
           src: '/product-tour/assets/demo/demo_img_3.png',
         },
-        focusPoints: [{ xPercent: 56, yPercent: 40, description: 'Fix bugs instantly' }],
+        focusPoints: [
+          {
+            xPercent: 56,
+            yPercent: 40,
+            description:
+              'Instantly receive intelligent code suggestions, context-aware answers, and integrated search results—right from your code editor or the web app.',
+          },
+        ],
         initialDuration: 3.5,
         transitionDuration: 4.0,
       },
@@ -97,7 +119,14 @@ export const sidebarItems: SidebarItem[] = [
           type: 'image',
           src: '/product-tour/assets/demo/demo_img_1.png',
         },
-        focusPoints: [{ xPercent: 24, yPercent: 42, description: 'Apply changes with one click' }],
+        focusPoints: [
+          {
+            xPercent: 24,
+            yPercent: 42,
+            description:
+              'Instantly receive intelligent code suggestions, context-aware answers, and integrated search results—right from your code editor or the web app.',
+          },
+        ],
         initialDuration: 3.5,
         transitionDuration: 4.0,
       },
@@ -118,7 +147,14 @@ export const sidebarItems: SidebarItem[] = [
           type: 'image',
           src: '/product-tour/assets/demo/demo_img_2.png',
         },
-        focusPoints: [{ xPercent: 31, yPercent: 24, description: 'Start chatting with Cody' }],
+        focusPoints: [
+          {
+            xPercent: 31,
+            yPercent: 24,
+            description:
+              'Instantly receive intelligent code suggestions, context-aware answers, and integrated search results—right from your code editor or the web app.',
+          },
+        ],
         keepFocusPointVisible: true,
         transitionDelay: 0,
         initialDuration: 3.5,
