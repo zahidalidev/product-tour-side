@@ -1,4 +1,8 @@
-# product-tour
-This is a WIP repo for our product tour.
+### Prerequisites
 
-Debug mode to get point postion toggle with Ctrl+Shift+D
+- Node.js v21.7.3
+- pnpm v9.15.4
+
+### Debug Mode
+
+Press `Ctrl+Shift+D` to toggle debug mode for viewing point positions.
