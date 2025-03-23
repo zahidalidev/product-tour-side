@@ -1,9 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion"
-import React, { useRef, useEffect, useState } from "react"
-import { useTourStore } from "@/stores/tour-store"
+import React, { useRef, useEffect, useState, MouseEvent } from "react"
 import Image from "next/image"
 
-// Animation parameters that you can adjust
+import { useTourStore } from "@/stores/tour-store"
+
+// Animation parameters that we can adjust
 const ANIMATION_CONFIG = {
   // Animation type - choose "spring" or "tween"
   animationType: "tween", // "tween" for precise timing, "spring" for bouncy physics
@@ -55,13 +56,8 @@ export function TourContent() {
   const [animationComplete, setAnimationComplete] = useState(false) // New state to track animation completion
   const [tooltipVisible, setTooltipVisible] = useState(false) // State to control tooltip visibility
 
-  // Check if this is the first sub-item of the first menu item
   const isFirstSubItem = activeItem.id === 1 && activeSubItem?.id === '1-1';
-
-  // Check if current media is a video
   const isVideo = activeSubItem?.mediaContent?.type === 'video';
-
-  // Calculate actual pixel positions from percentages
   const [focusPointPosition, setFocusPointPosition] = useState({ x: 0, y: 0 })
   const [nextFocusPointPosition, setNextFocusPointPosition] = useState({ x: 0, y: 0 })
   const [initialCenterPosition, setInitialCenterPosition] = useState({
@@ -69,9 +65,7 @@ export function TourContent() {
     y: 0
   });
 
-  // Then add this useEffect to set the initial position after component mounts
   useEffect(() => {
-    // This code only runs in the browser after the component mounts
     const width = window.innerWidth;
     const height = window.innerHeight;
     setInitialCenterPosition({
@@ -126,6 +120,7 @@ export function TourContent() {
       const timer = setTimeout(() => {
         setInitialAppearance(false);
       }, 100);
+
       return () => clearTimeout(timer);
     }
   }, [activeSubItem?.id, isFirstSubItem]);
@@ -173,7 +168,6 @@ export function TourContent() {
 
   // Video setup and cleanup
   useEffect(() => {
-    // Only run this effect for video content
     if (!isVideo) return;
 
     const video = videoRef.current
@@ -188,21 +182,16 @@ export function TourContent() {
     video.pause()
     setNextFocusPoint(null)
 
-    // Reset the transitioning state when changing sub-items
     setIsTransitioning(false)
 
-    // Add event listeners
     video.addEventListener('ended', handleVideoEnd)
 
     return () => {
-      // Remove event listeners on cleanup
       video.removeEventListener('ended', handleVideoEnd)
     }
   }, [activeSubItem?.id, setIsVideoPlaying, isVideo]);
 
-  // Move to the next point or item
   const moveToNextPoint = () => {
-    // Find current sub-item index in the active item's subitems
     const currentSubItemIndex = activeItem.subItems.findIndex(
       subItem => subItem.id === activeSubItem?.id
     )
@@ -211,7 +200,6 @@ export function TourContent() {
     if (currentSubItemIndex < activeItem.subItems.length - 1) {
       setActiveSubItem(activeItem.subItems[currentSubItemIndex + 1])
     } else {
-      // Move to the next main item
       const nextItemIndex = items.findIndex(item => item.id === activeItem.id) + 1
       if (nextItemIndex < items.length) {
         setActiveItem(items[nextItemIndex])
@@ -260,7 +248,6 @@ export function TourContent() {
           setIsVideoPlaying(true);
           setTooltipVisible(false); // Hide tooltip when video starts playing
 
-          // If keepFocusPointVisible is true and we have a next item
           if (activeSubItem?.keepFocusPointVisible && nextSubItem) {
             // Set next focus point for animation
             if (nextSubItem.focusPoints && nextSubItem.focusPoints.length > 0) {
@@ -280,7 +267,6 @@ export function TourContent() {
                 });
               }
 
-              // Use the configured delay or default to 2000ms
               const delay = activeSubItem?.transitionDelay ?? 2000;
 
               // Move to next point after the configured delay
@@ -290,10 +276,9 @@ export function TourContent() {
                   const nextItemIndex = items.findIndex(item => item.id === activeItem.id) + 1;
                   setActiveItem(items[nextItemIndex]);
                 } else {
-                  // Moving to next sub-item in same main item
                   setActiveSubItem(nextSubItem);
                 }
-                // Make sure to reset transitioning state
+
                 setIsTransitioning(false);
                 setNextFocusPoint(null);
               }, delay);
@@ -315,7 +300,6 @@ export function TourContent() {
           setIsTransitioning(false);
         });
     } else {
-      // For image content, just move to the next point after a delay
       const delay = activeSubItem?.transitionDelay;
 
       // If we have a next item and keepFocusPointVisible is true, animate to it
@@ -349,10 +333,8 @@ export function TourContent() {
   }
 
   const handleVideoEnd = () => {
-    // First, ensure video playing state is updated
     setIsVideoPlaying(false);
 
-    // Only move to next point if not in transitioning state
     if (!isTransitioning) {
       moveToNextPoint();
     } else if (debug) {
@@ -363,7 +345,7 @@ export function TourContent() {
   if (!activeSubItem) return null
 
   // Debug coordinates handler
-  const handleDebugClick = (e: React.MouseEvent) => {
+  const handleDebugClick = (e: MouseEvent) => {
     if (!debug) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
@@ -400,16 +382,13 @@ export function TourContent() {
     }
 
     if (ANIMATION_CONFIG.animationType === "spring") {
-      // Spring configuration
       return {
         type: "spring",
         stiffness: ANIMATION_CONFIG.springStiffness,
         damping: ANIMATION_CONFIG.springDamping,
         mass: ANIMATION_CONFIG.springMass,
-        // No duration for true spring physics
       };
     } else {
-      // Tween configuration
       return {
         type: "tween",
         duration: nextFocusPoint
@@ -542,7 +521,7 @@ export function TourContent() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Media Content - Conditionally render video or image based on content type */}
+
       {isVideo ? (
         <video
           ref={videoRef}

@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useRef } from 'react'
-import { useTourStore } from '@/stores/tour-store'
-import { AppSidebar } from "@/components/app-sidebar"
+import Image from 'next/image'
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,18 +10,52 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import Image from 'next/image'
 import { TourContent } from '@/components/TourContent'
+import { AppSidebar } from "@/components/AppSidebar"
+import { Separator } from "@/components/ui/separator"
+import { useTourStore } from '@/stores/tour-store'
 
-export default function Home() {
+const Home = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const { activeItem, items, completedItems, setCompletedItems, setItems, setActiveItem, setActiveSubItem, setCurrentStep, activeSubItem } = useTourStore();
+
+  const handleStepView = (step: number) => {
+    if (activeItem?.subItems[step - 1]) {
+      setActiveSubItem(activeItem.subItems[step - 1]);
+      setCurrentStep(step);
+    }
+  };
+
+  const handleFlowEnd = () => {
+    const currentIndex = items.findIndex(item => item.id === activeItem.id);
+    const newCompletedItems = [...completedItems];
+
+    if (!newCompletedItems.includes(activeItem.id)) {
+      newCompletedItems.push(activeItem.id);
+      setCompletedItems(newCompletedItems);
+    }
+
+    if (currentIndex === items.length - 1) {
+      const firstItem = items[0];
+      setActiveItem(firstItem);
+      setItems(items.map((item, idx) => ({
+        ...item,
+        isActive: idx === 0 || newCompletedItems.includes(item.id)
+      })));
+    } else if (currentIndex < items.length - 1) {
+      const nextItem = items[currentIndex + 1];
+      setActiveItem(nextItem);
+      setItems(items.map((item, idx) => ({
+        ...item,
+        isActive: idx === currentIndex + 1 || newCompletedItems.includes(item.id)
+      })));
+    }
+  };
 
   useEffect(() => {
     const currentIframe = iframeRef.current;
@@ -29,36 +63,13 @@ export default function Home() {
       const handleMessage = (event: MessageEvent) => {
         if (event.data.payload?.event === 'step_view') {
           const step = event.data.payload?.step?.index;
-          if (typeof step === 'number' && activeItem?.subItems[step - 1]) {
-            setActiveSubItem(activeItem.subItems[step - 1]);
-            setCurrentStep(step);
+          if (typeof step === 'number') {
+            handleStepView(step);
           }
         }
 
         if (event.data.payload?.event === 'flow_end') {
-          const currentIndex = items.findIndex(item => item.id === activeItem.id);
-          const newCompletedItems = [...completedItems];
-
-          if (!newCompletedItems.includes(activeItem.id)) {
-            newCompletedItems.push(activeItem.id);
-            setCompletedItems(newCompletedItems);
-          }
-
-          if (currentIndex === items.length - 1) {
-            const firstItem = items[0];
-            setActiveItem(firstItem);
-            setItems(items.map((item, idx) => ({
-              ...item,
-              isActive: idx === 0 || newCompletedItems.includes(item.id)
-            })));
-          } else if (currentIndex < items.length - 1) {
-            const nextItem = items[currentIndex + 1];
-            setActiveItem(nextItem);
-            setItems(items.map((item, idx) => ({
-              ...item,
-              isActive: idx === currentIndex + 1 || newCompletedItems.includes(item.id)
-            })));
-          }
+          handleFlowEnd();
         }
       };
 
@@ -110,3 +121,5 @@ export default function Home() {
     </SidebarProvider>
   )
 }
+
+export default Home

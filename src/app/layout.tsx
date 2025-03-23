@@ -4,8 +4,6 @@ import clsx from "clsx";
 import localFont from 'next/font/local';
 import "./globals.css"
 
-
-// PolySans Variable Font
 const polySansVariable = localFont({
   src: [
     {
@@ -20,7 +18,6 @@ const polySansVariable = localFont({
   variable: '--font-polysans'
 });
 
-// PolySans Mono Font
 const polySansMono = localFont({
   src: [
     {

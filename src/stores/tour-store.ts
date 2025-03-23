@@ -1,11 +1,11 @@
 import { create } from 'zustand'
 
-import CodeSearch from '@/assets/icons/codeSearch.svg'
-import Cody from '@/assets/icons/cody.svg'
-import Agents from '@/assets/icons/agents.svg'
 import BatchChanges from '@/assets/icons/batchChanges.svg'
+import CodeSearch from '@/assets/icons/codeSearch.svg'
 import ContextIcon from '@/assets/icons/context.svg'
 import PromptsIcon from '@/assets/icons/prompts.svg'
+import Agents from '@/assets/icons/agents.svg'
+import Cody from '@/assets/icons/cody.svg'
 
 export type FocusPoint = {
   xPercent: number // Percentage from left (0-100)
@@ -13,7 +13,6 @@ export type FocusPoint = {
   description: string
 }
 
-// Define a type for the media content
 export type MediaContent = {
   type: 'video' | 'image'
   src: string
@@ -23,7 +22,6 @@ export type SubItem = {
   id: string
   title: string
   description: string
-  // Replace videoSrc with mediaContent
   mediaContent: MediaContent
   focusPoints: FocusPoint[]
   keepFocusPointVisible?: boolean
@@ -41,7 +39,6 @@ export type SidebarItem = {
   subItems: SubItem[]
 }
 
-// Main sidebar items with videos/images assigned to each sub-item - with percentage-based coordinates
 export const sidebarItems: SidebarItem[] = [
   {
     id: 1,
@@ -67,7 +64,6 @@ export const sidebarItems: SidebarItem[] = [
           },
         ],
         transitionDelay: 0,
-        // keepFocusPointVisible: true,
         initialDuration: 3.5,
         transitionDuration: 1.8,
       },
