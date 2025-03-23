@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic';
 import Image from 'next/image'
 
 import {
@@ -15,7 +16,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { TourContent } from '@/components/TourContent'
+const TourContent = dynamic(() => import('@/components/TourContent').then(mod => mod.TourContent), {
+  ssr: false
+})
 import { AppSidebar } from "@/components/AppSidebar"
 import { Separator } from "@/components/ui/separator"
 import { useTourStore } from '@/stores/tour-store'
